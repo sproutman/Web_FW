@@ -1,0 +1,26 @@
+<?php
+session_start();
+include("mailclass.php");
+$hostname=$_POST[servername];
+$mailname=$_POST[mailname];
+$mailpwd=$_POST[mailpwd];
+$rec=new pop3($hostname,110,10);
+if(!$rec->open())
+ {
+   echo"<script>alert('对不起，无法连接服务器！');history.back();</script>";
+   exit;
+ }
+if(!$rec->login($mailname,$mailpwd))
+{ 
+  echo"<script>alert('对不起，您的用户名或密码输入错误！');history.back();</script>";
+  exit;
+}
+session_register("host");
+session_register("user");
+session_register("pass");
+$host=$hostname;
+$user=$mailname;
+$pass=$mailpwd;
+$rec->close();
+header("location:list.php");
+?>

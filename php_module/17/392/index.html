@@ -1,0 +1,22 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>应用XML数据岛技术显示XML文档内容</title>
+</head>
+<body>
+<xml id="xmlid" src="index.xml"> <!-- 链接XML文件 -->
+</xml>
+<table datasrc="#xmlid" width="450" bgcolor="#50CCD6" border="4" cellspacing="0" cellpadding="0">
+  <thead>
+    <td width="150" align="center" height="25"><b>用户名</b></td>
+	<td width="150" align="center" height="25"><b>密码</b></td>
+    <td width="150" align="center" height="25"><b>地址</b></td>
+  </thead>
+  <tr>
+    <td height="25" align="center"><SPAN datafld="用户名"></SPAN></td>
+	<td height="25" align="center"><SPAN datafld="密码"></SPAN></td>
+    <td height="25" align="center"><SPAN datafld="地址"></SPAN></td>
+  </tr>
+</table>
+</body>
+</html> 

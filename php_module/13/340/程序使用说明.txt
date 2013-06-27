@@ -1,0 +1,1 @@
+请将要播放的视频文件（本实例要求为mpg格式的）复制到当前目录，并将其命名为shenghuo.mpg。如果要播发其他格式的视频文件，请将index.php文件中的如下代码“<param name="src" value="shenghuo.mpg">”内的shenghuo.mpg换成要播放的音频文件名!

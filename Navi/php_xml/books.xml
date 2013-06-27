@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+
+ <books>
+  <book>
+  <author>Jack Herrington</author>
+  <title>PHP Hacks</title>
+  <publisher>O'Reilly</publisher>
+  </book>
+  <book>
+  <author>Jack Herrington</author>
+  <title>Podcasting Hacks</title>
+  <publisher>O'Reilly</publisher>
+  </book>
+  </books>

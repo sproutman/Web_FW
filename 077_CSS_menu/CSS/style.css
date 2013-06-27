@@ -1,0 +1,40 @@
+BODY {
+	BACKGROUND: #799ae1; MARGIN: 0px; FONT: 9pt ËÎÌו
+}
+TABLE {
+	BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px
+}
+TD {
+	FONT: 12px ËÎÌו
+}
+IMG {
+	BORDER-RIGHT: 0px; BORDER-TOP: 0px; VERTICAL-ALIGN: bottom; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px
+}
+A {
+	FONT: 12px ËÎÌו; COLOR: #215dc6; TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: #428eff
+}
+.sec_menu {
+	BORDER-RIGHT: white 1px solid; BACKGROUND: #d6dff7; OVERFLOW: hidden; BORDER-LEFT: white 1px solid; BORDER-BOTTOM: white 1px solid
+}
+.list_title {
+	
+}
+.list_title SPAN {
+	FONT-WEIGHT: bold;
+	LEFT: 8px;
+	COLOR: #215dc6;
+	POSITION: relative;
+	TOP: 2px;
+	visibility: visible;
+}
+.list_title2 {
+	
+}
+.list_title2 SPAN {
+	FONT-WEIGHT: bold; LEFT: 8px; COLOR: #428eff; POSITION: relative; TOP: 2px
+}
+
+

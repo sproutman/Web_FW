@@ -1,0 +1,13 @@
+TYPE=VIEW
+query=select `db_database09`.`tb_changeview`.`id` AS `id`,`db_database09`.`tb_changeview`.`username` AS `username`,`db_database09`.`tb_changeview`.`userpwd` AS `userpwd` from `db_database09`.`tb_changeview`
+md5=3dc880448494da711f2085c07c3c22a3
+updatable=1
+algorithm=0
+definer_user=root
+definer_host=localhost
+suid=1
+with_check_option=0
+revision=1
+timestamp=2007-03-14 10:32:44
+create-version=1
+source=select * from tb_changeview

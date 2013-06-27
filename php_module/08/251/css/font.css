@@ -1,0 +1,17 @@
+
+A:link {
+	COLOR: #003399; TEXT-DECORATION: none
+}
+A:visited {
+	COLOR: #003399; TEXT-DECORATION: none
+}
+A:active {
+	COLOR: #003399; TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: #CC3333;TEXT-DECORATION: underline   
+}
+TD,TH {
+	FONT-SIZE:12px; COLOR: #003399; FONT-FAMILY:"verdana","Comic Sans","Arial";
+}
+

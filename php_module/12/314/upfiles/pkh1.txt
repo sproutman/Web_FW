@@ -1,0 +1,638 @@
+Cookie技术是一个非常有争议的技术，自经诞生它就成了广大网络用户和Web开发人员的
+一个争论焦点。有一些网络用户，甚至包括一些资深的Web专家也对它的产生和推广感到不满，这倒不是因为
+Cookie技术的功能太弱或别的技术性能上的原因，而仅仅是因为他们觉得Cookie 的使用，对网络用户的隐私
+构成了危害。因为Cookie是由Web服务器保存在用户浏览器上的小文本文件，它包含有关用户的信息（如身份
+识别号码、密码、用户在Web站点上购物的方式或用户访问该站点的次数）。  
+
+　　那么Cookie 技术究竟怎样呢？是否真的给网络用户带来了个人隐私的危害呢？还是让我们看了下面的内
+容，再做回答吧。 
+
+　　（1）Cookie技术简介 
+
+　　 在WEB技术发展史上，Cookie技术的出现是一个重大的变革。最先是Netscape在它的Netscape Navigator
+浏览器中引入了Cookie技术，从那时起，World Wide Web 协会就开始支持Cookie标准。以后又经过微软的大
+力推广（因为微软的IIS Web服务器所采用的ASP技术很大程度的使用了Cookie技术），即在微软的Internet
+Explorer浏览器中完全支持Cookie技术。到现在，绝大多数的浏览器都支持Cookie技术，或者至少兼容Cookie
+技术的使用。 
+
+　　1）什么是Cookie？ 
+
+　　按照Netscape官方文档中的定义，Cookie是在HTTP协议下，服务器或脚本可以维护客户工作站上信息的
+一种方式。Cookie 是由Web服务器保存在用户浏览器上的小文本文件，它可以包含有关用户的信息（如身份
+识别号码、密码、用户在Web站点购物的方式或用户访问该站点的次数）。无论何时用户链接到服务器，Web
+站点都可以访问Cookie信息。 
+
+　　通俗地讲，浏览器用一个或多个限定的文件来支持Cookie。这些文件在使用Windows操作系统的机器上叫
+做Cookie 文件，在Macintosh机器上叫做magic Cookie 文件，这些文件被网站用来在上面存储Cookie数据。
+网站可以在这些Cookie 文件中插入信息，这样对有些网络用户就有些副作用。有些用户认为这造成了对个人
+隐私的侵犯，更糟的是，有些人认为Cookie是对个人空间的侵占，而且会对用户的计算机带来安全性的危害。 
+
+　　目前有些Cookie 是临时的，另一些则是持续的。临时的Cookie只在浏览器上保存一段规定的时间，一旦
+超过规定的时间该Cookie就会被系统清除。例如在PHP中Cookie被用来跟踪用户进程直到用户离开网站。持续
+的Cookie则保存在用户的Cookie文件中，下一次用户返回时，仍然可以对它进行调用。 
+
+　　在Cookie文件中保存Cookie，一些用户会过分地认为这将带来很大的问题。主要是有些用户担心Cookie
+会跟踪用户网上冲浪的习惯，譬如用户喜爱到那些类型的站点、爱从事些什么活动等。害怕这种个人信息一
+旦落入一些别有用心的家伙手中，那么个人也就可能成为一大堆广告垃圾的对象，甚至遭到意外的损害。不
+过，这种担心压根儿不会发生，因为网站以外的用户是无法跨过网站来获得Cookie信息的。所以想以这种目
+的来应用Cookie是不可能的。不过，由于一些用户错误的理解以及“以讹传讹”，一些浏览器开发商别无选
+择，只好作出相识的响应（例如Netscape Navigator4.0和Internet Explorer3.0都提供了屏蔽Cookie 的选
+项）。 
+
+　　对Cookie技术期待了这么久的结果是，迫使许多浏览器开发商在它们的浏览器中提供了对Cookie的灵活
+性控制功能。例如，目前的两大主流浏览器Netscape Navigator 和 Internet Explorer是这样处理Cookie
+的:Netscape Navigator4.0不但可以接受Cookie进行警告，而且还可以屏蔽掉Cookie；InternetExplorer3.0
+也可以屏蔽Cookie，但在Internet Explorer4.0中就只能进行接受警告而没有提供屏蔽选项，不过在Internet
+Explorer4.0之后的更新版本中又加入了屏蔽Cookie的功能选项。 
+
+　　此外，很多最新的技术甚至已经可以在不能屏蔽Cookie的浏览器上进行Cookie的屏蔽了。例如，可以通
+过将Cookie文件设置成不同的类型来限制Cookie的使用。但是，非常不幸地是，要是你想完全屏蔽Cookie的
+话，肯定会因此拒绝许多的站点页面。因为当今已经有许多Web站点开发人员爱上了Cookie技术的强大功能，
+例如Session对象的使用就离不开Cookie的支持。 
+
+　　尽管今天仍有一些网络用户对于Cookie的争论乐此不倦，但是对于绝大多数的网络用户来说还是倾向于
+接受Cookie的。因此，我们尽可以放心地使用Cookie技术来开发我们的WEB页面。 
+
+　　2）Cookie是怎样工作的？ 
+
+　　要了解Cookie，必不可少地要知道它的工作原理。一般来说，Cookie通过HTTP Headers从服务器端返回
+到浏览器上。首先，服务器端在响应中利用Set-Cookie header来创建一个Cookie ，然后，浏览器在它的请
+求中通过Cookie header包含这个已经创建的Cookie，并且反它返回至服务器，从而完成浏览器的论证。 
+会话控制是PHP中一项重要的内容，通过会话控制可以轻松地完成很多任务，例如电子商务网站中的购物车。
+
+(PHP 3, PHP 4 )
+
+isset -- 检测变量是否设置
+描述
+bool isset ( mixed var [, mixed var [, ...]])
+
+
+如果 var 存在则返回 TRUE，否则返回 FALSE。 
+
+如果已经使用 unset() 释放了一个变量之后，它将不再是 isset()。若使用 isset() 测试一个被设置成 NULL 的变量，将返回 FALSE。同时要注意的是一个 NULL 字节（"\0"）并不等同于 PHP 的 NULL 常数。 
+
+警告: isset() 只能用于变量，因为传递任何其它参数都将造成解析错误。若想检测常量是否已设置，可使用 defined() 函数。 
+
+
+
+
+
+这只是一种遍历数组简便方法。foreach 仅能用于数组，当试图将其用于其它数据类型或者一个未初始化的变量时会产生错误。有两种语法，第二种比较次要但却是第一种的有用的扩展。 
+
+
+foreach (array_expression as $value) statement
+foreach (array_expression as $key => $value) statement
+ 
+
+
+
+第一种格式遍历给定的 array_expression 数组。每次循环中，当前单元的值被赋给 $value 并且数组内部的指针向前移一步（因此下一次循环中将会得到下一个单元）。 
+
+第二种格式做同样的事，只除了当前单元的键值也会在每次循环中被赋给变量 $key。 
+
+
+注: 当 foreach 开始执行时，数组内部的指针会自动指向第一个单元。这意味着不需要在 foreach 循环之前调用 reset()。 
+
+
+
+注: 此外注意 foreach 所操作的是指定数组的一个拷贝，而不是该数组本身。因此即使有 each() 的构造，原数组指针也没有变，数组单元的值也不受影响。 
+
+
+
+注: foreach 不支持用“@”来禁止错误信息的能力。 
+
+
+
+
+　　例如，我们创建了一个名字为login的Cookie来包含访问者的信息，创建Cookie时，服务器端的Header 
+如下面所示，这里假设访问者的注册名是“Michael Jordan”，同时还对所创建的Cookie的属性如path、
+domain、expires等进行了指定。 
+
+　　Set-Cookie:login=Michael Jordan;path=/;domain=msn.com; 
+　　expires=Monday,01-Mar-99 00:00:01 GMT 
+
+　　上面这个Header会自动在浏览器端计算机的Cookie文件中添加一条记录。浏览器将变量名为“login”
+的Cookie赋值为“Michael Jordon”。注意，在实际传递过程中这个Cookie的值是经过了URLEncode方法的
+URL编码操作的。 这个含有Cookie值的HTTP Header被保存到浏览器的Cookie文件后，Header就通知浏览器
+将Cookie通过请求以忽略路径的方式返回到服务器，完成浏览器的认证操作。 
+
+　　此外，我们使用了Cookie的一些属性来限定该Cookie的使用。例如Domain属性能够在浏览器端对Cookie
+发送进行限定，具体到上面的例子，该Cookie只能传达室到指定的服务器上，而决不会跑到其他的如
+www.hp.com的Web站点上去。Expires属性则指定了该Cookie保存的时间期限，例如上面的Cookie在浏览器上
+只保存到1999年3月1日1秒。当然，如果浏览器上Cookie 太多，超过了系统所允许的范围，浏览器将自动对
+它进行删除。至于属性Path，用来指定Cookie将被发送到服务器的哪一个目录路径下。 
+
+　　说明：浏览器创建了一个Cookie后，对于每一个针对该网站的请求，都会在Header中带着这个Cookie；
+不过，对于其他网站的请求Cookie是绝对不会跟着发送的。而且浏览器会这样一直发送，直到Cookie过期为止。 
+
+　　上一部分讲了有关Cookie的技术背景，这部分来说说在PHP里如何设置、使用、删除Cookie，及Cookie
+的一些限制。PHP对Cookie支持是透明的，用起来非常方便。 
+
+　　1、设置Cookie
+
+　　PHP用SetCookie函数来设置Cookie。必须注意的一点是：Cookie是HTTP协议头的一部分，用于浏览器和
+服务器之间传递信息，所以必须在任何属于HTML文件本身的内容输出之前调用Cookie函数。SetCookie 函数
+定义了一个Cookie，并且把它附加在HTTP头的后面，SetCookie函数的原型如下：
+
+int SetCookie(string name, string value, int expire, string path, 
+string domain, int secure); 
+
+　　除了name之外所有的参数都是可选的。value,path,domain 三个参数可以用空字符串代换，表示没有设
+置；expire和 secure两个参数是数值型的，可以用0表示。expire参数是一个标准的Unix时间标记，可以用
+time()或mktime() 函数取得，以秒为单位。secure参数表示这个Cookie是否通过加密的HTTPS协议在网络上
+传输。 
+
+　　当前设置的Cookie 不是立即生效的，而是要等到下一个页面时才能看到.这是由于在设置的这个页面里
+Cookie由服务器传递给客户浏览器，在下一个页面浏览器才能把Cookie从客户的机器里取出传回服务器的原
+因。在同一个页面设置Cookie，实际是从后往前，所以如果要在插入一个新的Cookie之前删掉一个，你必须
+先写插入的语句，再写删除的语句，否则可能会出现不希望的结果。 
+
+　　来看几个例子：
+
+　　简单的：
+
+SetCookie("MyCookie", "Value of MyCookie"); 
+
+　　带失效时间的： 
+
+SetCookie("WithExpire", "Expire in 1 hour", time()+3600);//3600秒=1小时 
+
+　　什么都有的： 
+
+SetCookie("FullCookie", "Full cookie value", time()+3600, "/forum", ".phpuser.com", 1); 
+
+　　这里还有一点要说明的，比如你的站点有几个不同的目录，那么如果只用不带路径的Cookie的话，在一
+个目录下的页面里设的Cookie在另一个目录的页面里是看不到的，也就是说，Cookie是面向路径的。实际上，
+即使没有指定路径，WEB 服务器会自动传递当前的路径给浏览器的，指定路径会强制服务器使用设置的路径。
+解决这个问题的办法是在调用SetCookie时加上路径和域名，域名的格式可以是“www.phpuser.com”，也可
+是“.phpuser.com”。 
+
+　　SetCookie函数里表示value的部分，在传递时会自动被encode，也就是说，如果value的值是“test 
+value”在传递时就变成了“test%20value”，跟URL的方法一样。当然，对于程序来说这是透明的，因为在
+PHP接收Cookie的值时会自动将其decode。 
+
+　　如果要设置同名的多个Cookie，要用数组，方法是： 
+
+SetCookie("CookieArray[]", "Value 1"); 
+SetCookie("CookieArray[]", "Value 2"); 
+
+　　或 
+
+SetCookie("CookieArray[0]", "Value 1"); 
+SetCookie("CookieArray[1]", "Value 2"); 
+
+　　2、接收和处理Cookie 
+
+　　PHP对Cookie的接收和处理的支持非常好，是完全自动的，跟FORM变量的原则一样，特别简单。比如设
+置一个名为MyCookier的Cookie，PHP会自动从WEB服务器接收的HTTP头里把它分析出来，并形成一个与普通
+变量一样的变量，名为$myCookie，这个变量的值就是Cookie的值。数组同样适用。另外一个办法是引用PHP
+的全局变量$HTTP_COOKIE_VARS数组。 
+
+　　分别举例如下：（假设这些都在以前的页面里设置过了，并且仍然有效） 
+
+echo $MyCookie; 
+echo $CookieArray[0]; 
+echo count($CookieArray); 
+echo $HTTP_COOKIE_VARS["MyCookie"]; 
+
+　　就这么简单。 
+
+　　3、删除Cookie 
+
+　　要删除一个已经存在的Cookie，有两个办法： 
+
+　　一是调用只带有name参数的SetCookie，那么名为这个name的Cookie 将被从关系户机上删掉；另一个办
+法是设置Cookie的失效时间为time()或time()-1，那么这个Cookie在这个页面的浏览完之后就被删除了（其
+实是失效了）。 
+
+　　要注意的是，当一个Cookie被删除时，它的值在当前页在仍然有效的。 
+
+　　4、使用Cookie的限制 
+
+　　首先是必须在HTML文件的内容输出之前设置； 
+　　其次不同的浏览器对Cookie的处理不一致，且有时会出现错误的结果。比如：MS IE+SERVICE PACK 1
+不能正确处理带域名和路径的Cookie ，Netscape Communicator 4.05和MS IE 3.0不能正确处理不带路径和
+时间的Cookie。至于MS IE 5 好象不能处理带域名、路径和时间的Cookie。这是我在设计本站的页面时发现
+的。 
+　　第三个限制是在客户端的。一个浏览器能创建的Cookie数量最多为30个，并且每个不能超过4KB，每个WEB
+站点能设置的Cookie总数不能超过20个。 
+
+
+
+
+
+
+
+
+由于PHP具有快速、可靠、跨平台应用、源代码开放等特点，使得PHP成为最受欢迎的服务器端scrīpt语言之一。我根据自己在工作中体会到的，向大家介绍PHP使用的心得，希望对大家有所帮助。 
+
+利用PHP的Include files维护你的网站 
+不管你所开发的网站的规模是大是小，你都应该要认识到重复使用程序代码的重要性，不论你重复使用的是 PHP 程序或者是 HTML 原始码。举个例子来说，网站页尾的版权宣告至少每年都得修改一次，如果你的网站有许多个页面，该怎么办呢？动手一个一个修改这些页面肯定是一件头痛的事情。通过 PHP 我们可以用几个不同的方式来重复使用程序代码。要使用哪些函数端视你要重复使用的是怎样的内容而定。 
+
+这些主要的函数包括： 
+
+* include() 与 include_once() 
+
+* require() 与 require_once() 
+
+1.include() 函数会将指定的档案读入并且执行里面的程序。 
+
+例如：include('/home/me/myfile'); 
+
+被导入的档案中的程序代码都会被执行，而且这些程序在执行的时候会拥有和源文件中呼叫到 include() 函数的位置相同的变量范围（variable scope）。你可以导入同一个服务器中的静态档案，甚至可以通过合并使用 include() 与 fopen() 函数来导入其它服务器上面的档案。 
+
+2.include_once()函数的作用和 include() 是几乎相同的 
+
+唯一的差别在于 include_once() 函数会先检查要导入的档案是不是已经在该程序中的其它地方被导入过了，如果有的话就不会再次重复导入该档案（这项功能有时候是很重要的，比方说要导入的档案里面宣告了一些你自行定义好的函数，那么如果在同一个程序重复导入这个档案，在第二次导入的时候便会发生错误讯息，因为 PHP 不允许相同名称的函数被重复宣告第二次）。 
+
+3.require()函数会将目标档案的内容读入，并且把自己本身代换成这些读入的内容。 
+
+这个读入并且代换的动作是在 PHP 引擎编译你的程序代码的时候发生的，而不是发生在 PHP 引擎开始执行编译好的程序代码的时候（PHP 3.0 引擎的工作方式是编译一行执行一行，但是到了 PHP 4.0 就有所改变了，PHP 4.0 是先把整个程序代码全部编译完成后，再将这些编译好的程序代码一次执行完毕，在编译的过程中不会执行任何程序代码）。require() 通常来导入静态的内容，而 include() 则适合用来导入动态的程序代码。 
+
+4.如同 include_once()函数，require_once() 函数会先检查目标档案的内容是不是在之前就已经导入过了，如果是的话，便不会再次重复导入同样的内容。 
+
+我个人习惯使用 require() 函数来导入版权宣告（copyrights），静态文字或其它本身不含有变量，或者本身需要倚赖其它执行过的程序才能正确执行的程序代码。例如： 
+
+＜HTML＞
+＜HEAD＞＜TITLE＞网页标题＜/TITLE＞＜/HEAD＞
+＜BODY＞
+[一堆内容]
+＜?
+// 导入版权宣告文字
+require('/home/me/mycopyright');
+?＞
+＜/BODY＞＜/HTML＞ 
+
+另一方面，我通常在程序的开头使用 include() 函数来导入一些函式库或者类似的程序代码： 
+
+＜?
+// 导入我的函式库
+include('/home/me/myfunctions'); 
+// 利用之前导入的函式库里面定义好的 PHP 函数执行一些功能?＞
+＜HTML＞
+＜HEAD＞＜TITLE>网页标题＜/TITLE＞＜/HEAD＞
+＜BODY＞
+[一堆内容]
+＜/BODY＞
+＜/HTML＞ 
+
+接下来你可能会问这第一个挺符合逻辑的问题：「这些被导入的档案要放在哪儿呢？」简短的答案是：「放在服务器档案系统里的任何地方都行。」然而，要留意的是如果被导入的档案除了单纯的程序代码片段以外还包含了一些敏感资料，例如连结数据库系统要用到的帐号和密码，那么建议你不要把这些档案放在 Web 服务器的文件根目录之下，因为那样的话他人便可以很容易地窃取到这些资料了。 
+
+你可以将这些被包含的档案放在系统的任何一个目录里面，唯一的条件是 PHP 本身用来执行的身分（www，nobody 或者其它身分）必须要有足够的权限能够读取这些档案就可以了。这些档案的扩展名也可以任意取，甚至没有附档名也无所谓。 
+
+善用include()和 require()来将网站里面经常需要变动的共享内容做合理的分割，在更新网站内容的时候将会容易进行得多。 
+
+利用PHP来维护档案系统 
+PHP 提供了很多与档案系统相关的函数，让我们不仅可以开启档案，还能够显示目录的内容，搬移档案的位置以及其它更多功能。有的朋友甚至写了能够通过浏览器来管理档案内容的 PHP 程序。 
+
+在开始介绍 PHP 的档案系统相关功能之前，我们要先理清一件事情：在 Windows操作系统里面，档案路径可以使用斜线（/）或者反斜线（\）来表示，但是在其它操作系统里面我们只会使用到斜线。为了保持统一性，下面的例子里面的档案路径都是使用斜线。 
+
+下面的例子程序我将教大家基本的目录内容显示功能，每个步骤都有批注，请直接阅读。 
+
+＜? /* $dir_name 这个变量的值是你想要读取的目录的完整路径 */ 
+$dir_name = "/home/me/"; 
+/* opendir()函数会开启某个目录，并且传回一个参考值（handle）让我们可以用来在程序中参照到该目录 */ 
+$dir = opendir($dir_name); 
+/* 开始建立一个字符串，这个字符串包含了 HTML 的列表卷标，用来显示目录中的文件名称。 */ 
+$file_list = "＜ul＞"; 
+/* 使用一个 while 循环叙述将前面开启的目录中的档案全部读取一遍。如果读取到的档名不是「.」或者「..」，就把该档名写入前面提到的字符串里面去。 */ 
+while ($file_name = readdir($dir)) { 
+if (($file_name != ".") && ($file_name != "..")) { 
+$file_list .= "＜li＞$file_name"; 
+} 
+} 
+/* 替 HTML 列表卷标加上结尾 */ 
+$file_list .= "＜/ul＞"; 
+/* 关闭之前开启的目录并且结束这段 PHP 程序 */ 
+closedir($dir); 
+?＞ 
+＜!-- HTML原始码从这里开始 --＞
+＜HTML＞
+＜HEAD＞
+
+＜/HEAD＞
+＜BODY＞
+＜!-- 使用 PHP 程序来将我们所读取的目录名称显示在页面上 --＞
+＜P＞Files in: ＜? echo "$dir_name"; ?＞＜/p＞
+＜!-- 使用 PHP 程序将该目录中读取到的文件名显示在页面上 --＞
+＜? echo "$file_list"; ?＞
+＜/BODY＞
+＜/HTML＞ 
+
+经过上面几步，你已经成功把某个目录中的文件名称显示在网页上了。但你要记住一点：要读取某个目录或者档案（读取档案内容的做法稍后会介绍），PHP 本身执行所用的身分必须至少拥有该目录或者档案的读取权限才行，否则系统会显示权限不足的错误讯息。 
+
+下一个例子我将教大家如何复制一个档案： 
+
+＜? /* 变量$orginal储存源文件的完整路径，变量$copied储存复制过去的新档案的完整路径 */ 
+$original = "/home/me/mydatabasedump";
+$copied = "/archive/mydatabasedumo_1010"; 
+/* 呼叫 copy() 函数把档案从原始位置复制一份到新的位置去。如果无法复制，那么便终止程序的执行并且显示错误讯息。 */
+@copy($original, $copied) or die("无法复制档案。"); 
+?＞ 
+
+上面的例子程序可以用来扩充成为一个档案备份系统程序。当这个程序执行的时候，它会将数据库的数据文件复制到其它目录下面做为备份之用。只要修改系统的排程档案内容（crontab），我们便可以让这个程序自动在每天的固定时间执行一次，达到系统自动备份，不需要人工手动执行。 
+
+如果你的系统上面有安装 Lynx 软件（Lynx 是一种纯文字的 Web 浏览器）的话，你可以在系统排程档案里面加入下面这笔记录来让系统在固定时间自动激活 Lynx 并且呼叫我们之前写好的 PHP 备份程序。当 Lynx 呼叫（浏览）我们的 PHP 程序的时候，该程序就会被执行，并且产生备份文件。下面这个例子教你如何在每天早晨五点钟执行我们的备份程序，并且在执行完以后自动将 Lynx 程序关闭： 
+
+
+ 
+
+
+
+include 与include_once的问题
+ 
+程序一执行到include就会包括这个文件。而include_once会判断一下这个文件是否已经包含过了，如果包含过了，就不会再重复包含了，这是唯一的区别。。。
+
+一般都用include_once。。。。。因为这样就不会因为重复包含了两具相同的类文件而发生错误了。。。。
+
+还有一个跟include相似的，require，它也有一个require。。。。。参上用法。。。。
+
+require跟include的区别在于：
+
+include是执行到它时，才包含，require是不管执行到没，都会包含，现在require用得多些。。。如:
+
+if(0){
+include('1.php');
+}
+//不会包含1.php
+
+if(0){
+require('1.php');
+}
+//会包含1.php
+
+具体用哪个，看情况了。。。。如果是一定要包含的文件，请用require。。。。。
+
+如果是只能包含一次的文件，请加_once............. 
+
+
+在Php中，include和require的作用比较容易混淆。下面我以一个经典例子来深刻说明它们的区别。
+    当我们经常访问一个数据库时，可以把连库语句写成一个文件
+con_db.Php3
+<?Php
+    $dbh =  mysql_connect('localhost','',''); 
+    mysql_select_db('admreqs'); 
+?>
+在实际应用时，我们可以在程序中调用这个文件。
+如require("con_db.Php3")或include("con_db.Php3)
+这时，两个函数的效果是差不多的。
+但如果这样用
+filename.Php3
+<?Php
+require("con_db.Php3")
+function myfun($par1,$par2)
+{包含对数据库处理的语句}
+.....
+myfun($par1,$par2);
+.....
+myfun($p1,$p2);
+?>
+文件到myfun处将不能继续执行，因为函数里无法得到外面的变量(include也是一样的)。除非把$dbh作为一个变量传给函数。这又增加了调用函数的复杂度。
+我们可以通过把require或include放在函数里面来解决这个问题。
+如果用include，文件的第一个函数调用处将顺利通过，但第二个调用将无法执行，原因是不能在没有关闭数据库时在打开一次，也就是说，con_db.Php3执行了两次。将include换成require,一切都正常。
+    也就是说，require类似于一次预扫描，在程序执行时，无论在函数里或是函数外，都将先把require的文件执行，且只执行一次。而include则是每执行一次就调用一次文件，即这次执行后，下次再执行执行到这里，仍将再执行一次。
+    因此，如果在一个循环中，某些语句你只想执行一次，那你用require包括它们就可以了。
+
+
+include在网页制作中的使用既简单又灵活，它不但能减少页面的繁琐，也会使管理变得更有序和有效，
+
+
+
+对象 
+JScript 8.0  
+Date 对象  
+
+此对象启用日期和时间的基本存储和检索。Date 构造函数有两种形式。
+
+
+function Date( [dateVal : { Number | String | System.DateTime } ] )
+function Date( year : int, month : int, date : int[, hours : int [, minutes : int [, seconds : int [, ms : int]]]] )
+参数
+
+dateVal 
+可选项。如果是数值，dateVal 以协调通用时间表示指定日期与 1970 年 1 月 1 日午夜之间相差的毫秒数。如果是字符串，则按照 parse 方法中的规则对 dateVal 进行分析。dateVal 也可以是 .NET 日期值。
+
+year 
+必选。年份全称，如 1976（而不是 76）。
+
+month 
+必选。月份，用从 0 到 11 的整数表示（1 月至 12 月）。
+
+date 
+必选。日期，用从 1 到 31 的整数表示。
+
+hours 
+可选项。如果提供了 minutes 则必须给出该参数。一个指定小时的，从 0 到 23 的整数（午夜到 11pm）。
+
+minutes 
+可选项。如果提供了 seconds 则必须给出该参数。一个指定分钟的，从 0 到 59 的整数。
+
+seconds 
+可选项。如果提供了 milliseconds 则必须给出该参数。一个指定秒的，从 0 到 59 的整数。
+
+ms 
+可选项。一个指定毫秒的，从 0 到 999 的整数。
+
+备注
+
+Date 对象包含表示特定时间实例（可以精确到毫秒）的数字。如果参数值大于其取值范围或者为负，则会相应地修改存储的其他值。例如，如果指定 150 秒，则 JScript 将该数字重新定义为 2 分 30 秒。
+
+如果数字是 NaN，则对象不表示特定的时间实例。如果没有将任何参数传递到 Date 构造函数，该函数将初始化为当前时间 (UTC)。类型为 Date 的变量在使用之前必须进行初始化。
+
+可在 Date 对象中表示的日期范围大约为 1970 年 1 月 1 日左右的 285,616 年。
+
+Date 对象具有两种静态方法：parse 和 UTC，它们在不创建 Date 对象的情况下进行调用。
+
+如果在不使用 new 的情况下调用 Date 构造函数，那么无论向该构造函数传递什么参数，所返回的 Date 对象都包含当前日期。
+
+注意 
+Date 对象可以与 JScript 中的 .NET Framework System.DateTime 数据类型互用。但是，其他公共语言规范 (CLS) 语言不能使用 Date 对象，因为只有 JScript 提供此对象；它不是从 .NET Framework 类型派生的。因此，当对参数进行类型批注并返回符合 CLS 的方法的类型时，请确保使用 System.DateTime 数据类型，而不是 Date 对象。然而，可以使用 Date 对象对标识符（而不是参数或返回类型）进行类型批注。有关更多信息，请参见编写符合 CLS 的代码。
+ 
+
+示例
+
+下面的示例使用 Date 对象。
+
+
+var s : String = "Today's date is: ";   // Declare variables.
+var d : Date = new Date();              // Create Date object with today's date.
+s += (d.getMonth() + 1) + "/";          // Get month
+s += d.getDate() + "/";                 // Get day
+s += d.getYear();                       // Get year.
+print(s);                               // Print date.
+如果该程序在 1992 年 1 月 26 日运行，输出本应该是：
+
+
+Today's date is: 1/26/1992
+
+
+
+
+1.Post传输数据时，不需要在URL中显示出来，而Get方法要在URL中显示。 
+2.Post传输的数据量大，可以达到2M，而Get方法由于受到URL长度的限制,只能传递大约1024字节. 
+3.Post顾名思义,就是为了将数据传送到服务器段,Get就是为了从服务器段取得数据.而Get之所以也能传送数据,只是用来设计告诉服务器,你到底需要什么样的数据.Post的信息作为http请求的内容，而Get是在Http头部传输的。 
+
+
+SESSION
+
+　Session指的就是用户在浏览某个网站时，从进入网站到浏览器关闭所经过的这段时间，也就是用户浏览这个网站所花费的时间。从上述的定义中我们可以看到，Session实际上是一个特定的时间概念。 
+
+　　一般来说，在网站上某一个页面中的变量(指服务器端变量，下同)是不能在下一页中用的，有了session就好办了。session中注册的变量可以作为全局变量使用。这样我们就可以将session用于用户身份认证,程序状态记录,页面之间参数传递。
+
+
+
+
+PHP中
+
+
+1、Get 方法通过 URL 请求来传递用户的数据，将表单内各字段名称与其内容，以成对的字符串连接，置于 action 属性所指程序的 url 后，如http://www.domain.com/test.asp?name=51js&password=51js，数据都会直接显示在 url 上，就像用户点击一个链接一样；Post 方法通过 HTTP post 机制，将表单内各字段名称与其内容放置在 HTML 表头(header)内一起传送给服务器端交由 action 属性能所指的程序处理，该程序会通过标准输入(stdin)方式，将表单的数据读出并加以处理
+
+
+2、 Get 方式需要使用 Request.QueryString 来取得变量的值；而 Post 方式通过 Request.Form 来访问提交的内容
+
+
+3、Get 方式传输的数据量非常小，一般限制在 2 KB 左右，但是执行效率却比 Post 方法好；而 Post 方式传递的数据量相对较大，它是等待服务器来读取数据，不过也有字节限制，这是为了避免对服务器用大量数据进行恶意攻击，根据微软方面的说法，微软对用 Request.Form() 可接收的最大数据有限制，IIS 4 中为 80 KB 字节，IIS 5 中为 100 KB 字节
+
+建议：除非你肯定你提交的数据可以一次性提交，否则请尽量用 Post 方法
+
+
+4、Get 方式提交数据，会带来安全问题，比如一个登陆页面，通过 Get 方式提交数据时，用户名和密码将出现在 URL 上，如果页面可以被缓存或者其他人可以访问客户这台机器，就可以从历史记录获得该用户的帐号和密码，所以表单提交建议使用 Post 方法；Post 方法提交的表单页面常见的问题是，该页面如果刷新的时候，会弹出一个对话框
+
+
+
+
+
+
+利用PHP中的POST&GET，可以编写出PHP的SQL injecton，PHP Search，WEB proxy的工具。 
+
+要使用PHP的POST&GET，可以运用fsockopen函数，以下是它的描述： 
+例子 1. fsockopen() Example 
+
+<?php 
+$fp = fsockopen("www.example.com", 80, $errno, $errstr, 30); 
+if (!$fp) { 
+　 echo "$errstr ($errno)<br />\n"; 
+} else { 
+　 $out = "GET / HTTP/1.1\r\n"; 
+　 $out .= "Host: example.com\r\n"; 
+　 $out .= "Connection: Close\r\n\r\n"; 
+
+　 fputs($fp, $out); 
+　 while (!feof($fp)) { 
+　　　 echo fgets($fp, 128); 
+　 } 
+　 fclose($fp); 
+} 
+?>　 
+
+The example below shows how to retrieve the day and time from the UDP service "daytime" (port 13) in your own machine. 
+
+例子 2. Using UDP connection 
+
+<?php 
+$fp = fsockopen("udp://127.0.0.1", 13, $errno, $errstr); 
+if (!$fp) { 
+　 echo "ERROR: $errno - $errstr<br />\n"; 
+} else { 
+　 fwrite($fp, "\n"); 
+　 echo fread($fp, 26); 
+　 fclose($fp); 
+} 
+?>　 
+（http://cn2.php.net/manual/zh/function.fsockopen.php） 
+
+
+我举个简单的例子： 
+<?php 
+
+//定义一些连接参数 
+$urls = array( 
+'host'=>'localhost', 
+'port'=>80, 
+'path'=>'/index.php', 
+'method'=>'POST', 
+'protocol'=>'1.0', 
+); 
+
+//POST方法传递的参数 
+$ps = array( 
+'language'=>'php', 
+'linux'=>'redhat', 
+); 
+
+//GET方法传递的参数 
+$gs = array( 
+'php'=>5, 
+'redhat'=>9 
+); 
+
+/** 
+返回：得到POST或GET方法后返回的字符串(string) 
+参数： 
+　 $usls : string 
+　 $ps : array 
+　 $gs : array 
+调用方法： 
+　 getData($urls,$ps,'') //使用POST方法 
+　 getData($urls,'',$gs) //使用GET方法 
+参考资料：http://cn.php.net/manual/en/function.fsockopen.php 
+*/ 
+function getData($urls,$ps='',$gs=''){ 
+　　$host = $urls['host']; 
+　　$port = $urls['port']; 
+　　$path = $urls['path']; 
+　　$method = $urls['method']; 
+　　$protocol = $urls['protocol']; 
+　　$posts = ''; 
+　　$gets = ''; 
+
+　　if(is_array($ps)){ 
+　　　　foreach($ps as $k => $v){ 
+　　　　　 $posts .= urlencode($k)."=".urlencode($v).'&'; 
+　　　　} 
+　　　　$posts = substr($posts,0,-1); 
+　　　　$len = strlen($posts); 
+　　} 
+　　if(is_array($gs)){ 
+　　　　foreach($gs as $k => $v){ 
+　　　　　 $gets .= urlencode($k)."=".urlencode($v).'&'; 
+　　　　} 
+　　　　$gets = substr($gets,0,-1); 
+　　} 
+
+　　$fp = fsockopen($host, $port,$errno,$errstr,3); 
+　　if(!$fp){ 
+　　　 echo "can't connect...\r\n<br>Error:$errstr"; 
+　　　 return ; 
+　　} 
+　　fputs($fp, "$method $path?$gets HTTP/$protocol\r\n"); 
+　　fputs($fp, "Host: localhost\r\n"); 
+　　if($posts != ''){ 
+　　　　fputs($fp, "Content-type: application/x-www-form-urlencoded\r\n"); 
+　　　　fputs($fp, "Content-Length: $len\r\n"); 
+　　　　fputs($fp, "\r\n"); 
+　　　　fputs($fp, $posts); 
+　　} 
+　　fputs($fp, "Connection: Close\r\n\r\n"); 
+　　$s = ''; 
+　　do{ 
+　　　$data = fgets($fp,1024); 
+　　　if($data == '') { 
+　　　　　break; 
+　　　} 
+　　　$s .= $data; 
+　　} while(true); 
+　　fclose($fp); 
+　　return $s; 
+} 
+
+//这里是使用POST方法取得目标网页返回的字符串 
+echo getData($urls,$ps,''); 
+
+//如果要使用GET方法就用如下方式： 
+echo getData($urls,'',$gs); 
+?>　 
+
+
+Example1：http://jsw.china12e.com/phpsearch.php?q=icehack%20lcx 
+Example2：http://jsw.china12e.com/php-injecton.php（代码未公布^_^） 

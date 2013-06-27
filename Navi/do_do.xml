@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<对象配置>
+  <MAC对象>
+    <MAC名称>MAC11</MAC名称>
+    <MAC值>1.2.3.4</MAC值>
+  </MAC对象>
+<MAC对象><MAC_name>MAC04</MAC_name><MAC_address>2.3.4.5</MAC_address></MAC对象></对象配置>

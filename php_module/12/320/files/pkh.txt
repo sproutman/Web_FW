@@ -1,0 +1,267 @@
+  一个正则表达式就是由普通字符（例如字符 a 到 z）以及特殊字符（称为元字符）组成的文字模式。该模式描述在查找文字主体时待匹配的一个或多个字符串。正则表达式作为一个模板，将某个字符模式与所搜索的字符串进行匹配。
+
+JavaScript中正则表达式有两种声明方式
+1. 构造函数：var re = new RegExp('JavaScript', 'i') 其中i是正则式的模式标志，共有3个，i表示不区分大小写，g表示全局匹配，m表示多行匹配
+2.直接量语法，包含在一对/中间，如 var re = /JavaScript/i
+
+有特殊意义的字符
+^ $ . * + ? = ! : | \ / () [] {}
+尽管有些字符只在某些特殊的环境中才会有特殊意义，不过把它们当作直接量字符使用时最好用转义符\
+
+字符类
+将单独的直接量放进方括号里就可以组合成字符类，一个字符类和它所包含的任意一个字符相匹配，如/[ab]/与a或b匹配，/[^ab]/与除ab外的任意字符匹配，/[a-z]/与所有小写字母匹配，
+有一个小tip需要注意，\b在JS的正则式中是用来匹配单字的边界的，所以要匹配退格符时需要写成/[\b]/
+
+重复
+*表式重复0到多次，+表示重复1到多次，?表示重复0到1次
+{n}表示重复n次，{n,m}表示n到m次，{n,}表示至少n次
+需要注意的是，这种重复匹配是贪婪的
+在JS1.5之后支持非贪婪的匹配，做法是在后面加一个问号，如*? +?等
+
+选择、分组、引用
+| 号用来进行选择，如/ab|cd/与ab或cd匹配，它的工作方式相当于逻辑或，如果|号前面的匹配已经成功就忽略后面的匹配，如用/a|ab/对ab进行匹配操作时，它只匹配第一个字符a
+() 将括号中的字符合为一组，称为一个子表达式，可以用\后接一个数字进行引用（\1 引用第一个带括号的子表达式），由于子表达式可以嵌套，所以用左括号出现的顺序来代表子表达式的引用顺序。如匹配一对引号可以用/('")[^'"]*\1/
+在JS1.5中有一种改进的括号方式(?:xxx)，它只有分组的效果，而不会产生引用，/(ab)(?:cde)(fg)\2/中\2对应着(fg)
+
+指定匹配的位置（即锚元素的使用）
+^ 字符串的开头，$ 字符串的结尾，\b 为单字的边界， \B 为非单字边界
+在JS1.5中，(?=xxx)可以指定一个前向的锚定条件，即字符需要匹配该条件，(?!xxx)指定一个反向的锚定条件，即字符不匹配该条件
+如/\bJava\b/匹配一个单字Java，它不会匹配JavaScript
+
+一些转义字符
+.  （点号）匹配任意字符
+\w  相当于[a-zA-Z0-9_]
+\W  相当于[^a-zA-Z0-9_]
+\s  任何unicode空白符
+\S  任何非unicode空白符
+\d  相当于[0-9]
+\D  相当于[^0-9]
+[\b] 退格直接量
+
+JS有几个用于模式匹配的字符串函数，包括search, replace, match, exec, test, split等
+
+ 
+
+ 
+
+这里有一些可能会遇到的正则表达式示例：
+
+JScript VBScript 匹配 
+/^\[ \t]*$/ "^\[ \t]*$" 匹配一个空白行。 
+/\d{2}-\d{5}/ "\d{2}-\d{5}" 验证一个ID 号码是否由一个2位数字，一个连字符以及一个5位数字组成。 
+/<(.*)>.*<\/\1>/ "<(.*)>.*<\/\1>" 匹配一个 HTML 标记。 
+
+
+下表是元字符及其在正则表达式上下文中的行为的一个完整列表：
+
+字符 描述 
+\ 将下一个字符标记为一个特殊字符、或一个原义字符、或一个后向引用、或一个八进制转义符。例如，'n' 匹配字符 "n"。'\n' 匹配一个换行符。序列 '\\' 匹配 "\" 而 "\(" 则匹配 "("。 
+^ 匹配输入字符串的开始位置。如果设置了 RegExp 对象的 Multiline 属性，^ 也匹配 '\n' 或 '\r' 之后的位置。 
+$ 匹配输入字符串的结束位置。如果设置了RegExp 对象的 Multiline 属性，$ 也匹配 '\n' 或 '\r' 之前的位置。 
+* 匹配前面的子表达式零次或多次。例如，zo* 能匹配 "z" 以及 "zoo"。 * 等价于{0,}。 
++ 匹配前面的子表达式一次或多次。例如，'zo+' 能匹配 "zo" 以及 "zoo"，但不能匹配 "z"。+ 等价于 {1,}。 
+? 匹配前面的子表达式零次或一次。例如，"do(es)?" 可以匹配 "do" 或 "does" 中的"do" 。? 等价于 {0,1}。 
+{n} n 是一个非负整数。匹配确定的 n 次。例如，'o{2}' 不能匹配 "Bob" 中的 'o'，但是能匹配 "food" 中的两个 o。 
+{n,} n 是一个非负整数。至少匹配n 次。例如，'o{2,}' 不能匹配 "Bob" 中的 'o'，但能匹配 "foooood" 中的所有 o。'o{1,}' 等价于 'o+'。'o{0,}' 则等价于 'o*'。 
+{n,m} m 和 n 均为非负整数，其中n <= m。最少匹配 n 次且最多匹配 m 次。刘， "o{1,3}" 将匹配 "fooooood" 中的前三个 o。'o{0,1}' 等价于 'o?'。请注意在逗号和两个数之间不能有空格。 
+? 当该字符紧跟在任何一个其他限制符 (*, +, ?, {n}, {n,}, {n,m}) 后面时，匹配模式是非贪婪的。非贪婪模式尽可能少的匹配所搜索的字符串，而默认的贪婪模式则尽可能多的匹配所搜索的字符串。例如，对于字符串 "oooo"，'o+?' 将匹配单个 "o"，而 'o+' 将匹配所有 'o'。 
+. 匹配除 "\n" 之外的任何单个字符。要匹配包括 '\n' 在内的任何字符，请使用象 '[.\n]' 的模式。 
+(pattern) 匹配pattern 并获取这一匹配。所获取的匹配可以从产生的 Matches 集合得到，在VBScript 中使用 SubMatches 集合，在JScript 中则使用 $0…$9 属性。要匹配圆括号字符，请使用 '\(' 或 '\)'。 
+(?:pattern) 匹配 pattern 但不获取匹配结果，也就是说这是一个非获取匹配，不进行存储供以后使用。这在使用 "或" 字符 (|) 来组合一个模式的各个部分是很有用。例如， 'industr(?:y|ies) 就是一个比 'industry|industries' 更简略的表达式。 
+(?=pattern) 正向预查，在任何匹配 pattern 的字符串开始处匹配查找字符串。这是一个非获取匹配，也就是说，该匹配不需要获取供以后使用。例如， 'Windows (?=95|98|NT|2000)' 能匹配 "Windows 2000" 中的 "Windows" ，但不能匹配 "Windows 3.1" 中的 "Windows"。预查不消耗字符，也就是说，在一个匹配发生后，在最后一次匹配之后立即开始下一次匹配的搜索，而不是从包含预查的字符之后开始。 
+(?!pattern) 负向预查，在任何不匹配Negative lookahead matches the search string at any point where a string not matching pattern 的字符串开始处匹配查找字符串。这是一个非获取匹配，也就是说，该匹配不需要获取供以后使用。例如'Windows (?!95|98|NT|2000)' 能匹配 "Windows 3.1" 中的 "Windows"，但不能匹配 "Windows 2000" 中的 "Windows"。预查不消耗字符，也就是说，在一个匹配发生后，在最后一次匹配之后立即开始下一次匹配的搜索，而不是从包含预查的字符之后开始 
+x|y 匹配 x 或 y。例如，'z|food' 能匹配 "z" 或 "food"。'(z|f)ood' 则匹配 "zood" 或 "food"。 
+[xyz] 字符集合。匹配所包含的任意一个字符。例如， '[abc]' 可以匹配 "plain" 中的 'a'。 
+[^xyz] 负值字符集合。匹配未包含的任意字符。例如， '[^abc]' 可以匹配 "plain" 中的'p'。 
+[a-z] 字符范围。匹配指定范围内的任意字符。例如，'[a-z]' 可以匹配 'a' 到 'z' 范围内的任意小写字母字符。 
+[^a-z] 负值字符范围。匹配任何不在指定范围内的任意字符。例如，'[^a-z]' 可以匹配任何不在 'a' 到 'z' 范围内的任意字符。 
+\b 匹配一个单词边界，也就是指单词和空格间的位置。例如， 'er\b' 可以匹配"never" 中的 'er'，但不能匹配 "verb" 中的 'er'。 
+\B 匹配非单词边界。'er\B' 能匹配 "verb" 中的 'er'，但不能匹配 "never" 中的 'er'。 
+\cx 匹配由x指明的控制字符。例如， \cM 匹配一个 Control-M 或回车符。 x 的值必须为 A-Z 或 a-z 之一。否则，将 c 视为一个原义的 'c' 字符。 
+\d 匹配一个数字字符。等价于 [0-9]。 
+\D 匹配一个非数字字符。等价于 [^0-9]。 
+\f 匹配一个换页符。等价于 \x0c 和 \cL。 
+\n 匹配一个换行符。等价于 \x0a 和 \cJ。 
+\r 匹配一个回车符。等价于 \x0d 和 \cM。 
+\s 匹配任何空白字符，包括空格、制表符、换页符等等。等价于 [ \f\n\r\t\v]。 
+\S 匹配任何非空白字符。等价于 [^ \f\n\r\t\v]。 
+\t 匹配一个制表符。等价于 \x09 和 \cI。 
+\v 匹配一个垂直制表符。等价于 \x0b 和 \cK。 
+\w 匹配包括下划线的任何单词字符。等价于'[A-Za-z0-9_]'。 
+\W 匹配任何非单词字符。等价于 '[^A-Za-z0-9_]'。 
+\xn 匹配 n，其中 n 为十六进制转义值。十六进制转义值必须为确定的两个数字长。例如， '\x41' 匹配 "A"。'\x041' 则等价于 '\x04' & "1"。正则表达式中可以使用 ASCII 编码。. 
+\num 匹配 num，其中 num 是一个正整数。对所获取的匹配的引用。例如，'(.)\1' 匹配两个连续的相同字符。 
+\n 标识一个八进制转义值或一个后向引用。如果 \n 之前至少 n 个获取的子表达式，则 n 为后向引用。否则，如果 n 为八进制数字 (0-7)，则 n 为一个八进制转义值。 
+\nm 标识一个八进制转义值或一个后向引用。如果 \nm 之前至少有is preceded by at least nm 个获取得子表达式，则 nm 为后向引用。如果 \nm 之前至少有 n 个获取，则 n 为一个后跟文字 m 的后向引用。如果前面的条件都不满足，若  n 和 m 均为八进制数字 (0-7)，则 \nm 将匹配八进制转义值 nm。 
+\nml 如果 n 为八进制数字 (0-3)，且 m 和 l 均为八进制数字 (0-7)，则匹配八进制转义值 nml。 
+\un 匹配 n，其中 n 是一个用四个十六进制数字表示的 Unicode 字符。例如， \u00A9 匹配版权符号 (?)。 
+ 
+ 
+
+JScript 8.0  
+match 方法  
+
+使用正则表达式模式对字符串执行搜索，并返回一个包含该搜索结果的数组。
+
+
+function match(rgExp : RegExp) : Array
+参数
+
+rgExp 
+必选。包含正则表达式模式和适用标志的 Regular Expression 对象的实例。也可以是包含正则表达式模式和标志的变量名或字符串。
+
+备注
+
+如果 match 方法没有找到匹配，将返回 null。如果找到匹配，则 match 方法返回一个数组，并将更新全局 RegExp 对象的属性以反映匹配结果。
+
+match 方法返回的数组有三个属性：input、index 和 lastIndex.。Input 属性包含整个被搜索的字符串。Index 属性包含了在整个被搜索字符串中匹配的子字符串的位置。lastIndex 属性包含了前一次匹配中最后一个字符的下一个位置。
+
+如果没有设置全局标志 (g)，数组元素 0 包含整个匹配，而元素 1 到元素 n 包含了匹配中曾出现过的任一个子匹配。此行为与没有设置全局标志的 exec 方法的行为相同。如果设置了全局标志，则元素 0 到 n 中包含所有出现的匹配。
+
+示例
+
+下面的示例阐释了 match 方法的用法。
+
+
+function MatchDemo(){
+   var r, re;         //Declare variables.
+   var s = "The rain in Spain falls mainly in the plain";
+   re = /ain/i;    //Create regular expression pattern.
+   r = s.match(re);   //Attempt match on search string.
+   return(r);         //Return first occurrence of "ain".
+}
+本示例阐释设置了 g 标志的 match 方法的用法。
+
+
+function MatchDemo(){
+   var r, re;         //Declare variables.
+   var s = "The rain in Spain falls mainly in the plain";
+   re = /ain/ig;      //Create regular expression pattern.
+   r = s.match(re);   //Attempt match on search string.
+   return(r);         //Return array containing all four
+                      // occurrences of "ain".
+}
+下列代码行阐释了 match 方法如何用于字符串。
+
+
+var r, re = "Spain";
+r = "The rain in Spain".replace(re, "Canada");
+
+
+
+
+
+JScript 8.0  
+getDate 方法  
+
+使用当地时间返回 Date 对象中一个月第几天的值。
+
+
+function getDate() : Number
+备注
+
+若要使用协调通用时间 (UTC) 获取日期值，请使用 getUTCDate 方法。 
+
+返回值是一个介于 1 到 31 之间的整数，该整数表示 Date 对象中的日期值。
+
+示例
+
+下面的示例阐释了 getDate 方法的用法。 
+
+
+function DateDemo(){
+   var d, s = "Today's date is: ";
+   d = new Date();
+   s += (d.getMonth() + 1) + "/";
+   s += d.getDate() + "/";
+   s += d.getYear();
+   return(s);
+}
+
+
+
+
+JScript 8.0  
+getMonth 方法  
+
+使用当地时间返回 Date 对象中的月份值。
+
+
+function getMonth() : Number
+备注
+
+若要使用协调通用时间 (UTC) 获取月份值，请使用 getUTCMonth 方法。 
+
+getMonth 方法返回一个介于 0 到 11 之间的整数，该整数指示 Date 对象中的月份值。所返回的整数不是用于指示月份的传统数字。而是要比传统数字小 1。如果一个 Date 对象中存储的值为“Jan 5, 1996 08:47:00”，那么 getMonth 将返回 0。
+
+示例
+
+下面的示例阐释了 getMonth 方法的用法： 
+
+
+function DateDemo(){
+   var d, s = "Today's date is: ";
+   d = new Date();
+   s += (d.getMonth() + 1) + "/";
+   s += d.getDate() + "/";
+   s += d.getYear();
+   return(s);
+}
+
+
+
+JScript 8.0  
+getMinutes 方法  
+
+使用当地时间返回 Date 对象中的分钟值。
+
+
+function getMinutes() : Number
+备注
+
+若要使用协调通用时间 (UTC) 获取分钟值，请使用 getUTCMinutes 方法。 
+
+getMinutes 方法返回一个介于 0 到 59 之间的整数，该整数等于存储在 Date 对象中的分钟值。两种情况下会返回零：当小时后的时间不足一分钟时，或当创建 Date 对象时未将时间存储在该对象中。而要确定究竟属于哪种情况，唯一的方法就是检查小时和秒值是否也为零值。若它们均为零，则几乎可以肯定未将时间存储在 Date 对象中。
+
+示例
+
+下面的示例阐释了 getMinutes 方法的用法。 
+
+
+function TimeDemo(){
+   var d, s = "The current local time is: ";
+   var c = ":";
+   d = new Date();
+   s += d.getHours() + c;
+   s += d.getMinutes() + c;
+   s += d.getSeconds() + c;
+   s += d.getMilliseconds();
+   return(s);
+}
+
+
+
+JScript 8.0  
+getFullYear 方法  
+
+使用当地时间返回 Date 对象中的年份值。
+
+
+function .getFullYear() : Number
+备注
+
+若要使用协调通用时间 (UTC) 获取年份值，请使用 getUTCFullYear 方法。
+
+getFullYear 方法以绝对数的形式返回年份值。例如，1976 年的返回值为 1976。这样可以避免出现 2000 年问题，即不会把始于 2000 年 1 月 1 日的日期与始于 1900 年 1 月 1 日的日期混淆。
+
+下面的示例阐释了 getFullYear 方法的用法。
+
+
+function DateDemo(){
+   var d, s = "Today's date is: ";
+   d = new Date();
+   s += (d.getMonth() + 1) + "/";
+   s += d.getDate() + "/";
+   s += d.getFullYear();
+   return(s);
+}

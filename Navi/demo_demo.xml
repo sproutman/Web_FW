@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<对象配置>
+<MAC对象>
+    <MAC名称>MAC11</MAC名称>
+    <MAC值>9.9.9.9</MAC值>
+</MAC对象>
+<MAC对象>
+    <MAC名称>MAC123</MAC名称>
+    <MAC值>9.9.9.9</MAC值>
+</MAC对象>
+<MAC对象>
+    <MAC名称>MAC007</MAC名称>
+    <MAC值>6.6.6.6</MAC值>
+</MAC对象>
+<MAC对象>
+    <MAC名称>MAC123</MAC名称>
+    <MAC值>4.5.6.7</MAC值>
+</MAC对象>
+<MAC对象><MAC名称>MAC45</MAC名称><MAC值>4.5.6.7</MAC值></MAC对象><MAC对象><MAC名称>WAN10</MAC名称><MAC值>1.5.9.4</MAC值></MAC对象></对象配置>

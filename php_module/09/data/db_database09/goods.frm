@@ -1,0 +1,13 @@
+TYPE=VIEW
+query=select `db_database09`.`tb_goods`.`id` AS `id`,`db_database09`.`tb_goods`.`name` AS `name`,`db_database09`.`tb_goods`.`shuliang` AS `shuliang`,`db_database09`.`tb_goods`.`addtime` AS `addtime`,`db_database09`.`tb_goods`.`price` AS `price` from `db_database09`.`tb_goods`
+md5=1ac1e09e65ebb24cf354290e3d3ca192
+updatable=1
+algorithm=0
+definer_user=root
+definer_host=localhost
+suid=1
+with_check_option=0
+revision=1
+timestamp=2007-03-14 09:15:38
+create-version=1
+source=select * from tb_goods

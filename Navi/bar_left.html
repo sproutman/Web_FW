@@ -1,0 +1,150 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script type="text/javascript" src="jsmenu.js"></script>
+        <style>
+            body {
+                font-size:12px;
+            }
+            p {
+                margin:0;
+                padding:0
+            }
+            .jsmenu {
+                width:160px;
+                background:url(images/pm_leftbg.gif) repeat-y;
+                border-bottom:#C4DE9C solid 1px;
+            }
+            .jsmenu div {
+                background:url(images/jm_tab.gif) no-repeat;
+                overflow:hidden;
+            }
+            .jsmenu div.collapsed {
+                height:28px;
+            }
+            .jsmenu div .fath {
+                height:11px;
+                overflow:hidden;
+                display:block;
+                padding:8px 0 8px 26px;
+                color:#2754bb;
+                font-size:14px;
+                cursor:default;
+                background:url(images/jm_exp.gif) no-repeat 10px 10px;
+                border-top:#C4DE9C solid 1px;
+                cursor:pointer;
+            }
+            .jsmenu div .single {
+                height:27px;
+                overflow:hidden;
+                display:block;
+                padding:0;
+                font-size:14px;
+                background:url(images/jm_sgl.gif) no-repeat 10px 10px;
+                border-top:#C4DE9C solid 1px;
+            }
+            .jsmenu div .single a {
+                padding:8px 0 8px 26px;
+                display:block;
+                text-decoration:none;
+                font-size:14px;
+                color:#2754bb;
+                cursor:pointer;
+            }
+            .jsmenu div .single a.current {
+                background:url(images/jm_tabon.gif) no-repeat left top;
+            }
+            .jsmenu div.collapsed .fath {
+                background:url(images/jm_col.gif) no-repeat 10px 10px;
+            }
+            .jsmenu div .son {
+                border-top:#C4DE9C solid 1px;
+                padding:8px 0;
+            }
+            .jsmenu a {
+                padding:7px 0 6px 34px;
+                display:block;
+                color:#565656;
+                text-decoration:none;
+            }
+            .jsmenu a:hover {
+                color:#F60;
+                text-decoration:none;
+            }
+            .jsmenu a.current {
+                background:url(images/jm_li.gif) no-repeat;
+            }
+        </style>
+    </head>
+    <!--<body>-->
+    <!--<div>LEFT TODO write content</div>-->
+
+    <!--   <h1>Navigate Page</h1>
+       <br>
+       <a href="./page1.html" target="showframe">系统信息</a>
+        <frame src="./Sysinfo.php" name="showframe"/>
+        <a href="./Sysinfo.php" target="showframe">Sysinfo</a>
+       <br>
+       <a href="./object.php" target="showframe">Object</a>
+       <br>
+       <a href="./SNAT.php" target="showframe">SNAT</a>
+       <br>
+       <a href="./DNAT.php" target="showframe">DNAT</a>
+       <br>
+         <a href="./Filter.php" target="showframe">Filter</a>
+       <br>
+       
+       <br>-->
+
+    <body onload = "initMenu()">
+        <div class="jsmenu" id="js_menu">
+            <div>
+                <span class="fath">系统信息</span>
+                <p class="son">
+                    <!--<a class="current" href="#">NAT映射</a>-->
+                    <a href="./Sysinfo.php" target="showframe">管理</a>
+                    <a href="http://www.163.com" target="showframe">设置</a>
+                    <a href="http://www.sina.com" target="showframe">维护</a>
+                </p>
+            </div>
+            <div class="collapsed">
+                <span class="fath">网络设置</span>
+                <p class="son">
+                    <a href="#">WAN</a>
+                    <a href="#">LAN</a>
+                    <a href="#">Other</a>
+                </p>
+            </div>
+            <div class="collapsed">
+                <span class="fath">对象配置</span>
+                <p class="son">
+                    <a href="./object_ip.php" target="showframe">IP对象</a>
+                    <a href="./object_mac.php" target="showframe">MAC对象</a>
+                    <a href="http://www.baidu.com" target="showframe">服务对象</a>
+                    <a href="http://www.baidu.com" target="showframe">域名对象</a>
+                    <a href="http://www.baidu.com" target="showframe">时间对象</a>
+                    <a href="#">高级设置</a>
+                </p>
+            </div>
+            <div class="collapsed">
+                <span class="fath">高效下火</span>
+                <p class="son">
+                    <a href="./SNAT.php" target="showframe">NAT映射</a>
+                    <a href="./SNAT.php" target="showframe">MAC过滤</a>
+                    <a href="https://www.google.com/ncr" target="showframe">入侵检测</a>
+                    <a href="http://s.weibo.com" target="showframe">虚拟密网</a>
+                </p>
+            </div>
+            <!--      <div><span class="single"><a href="#">酷站</a></span></div>
+                  <div><span class="single"><a href="#">专题</a></span></div>-->
+        </div>
+    </body>
+
+    <!--</body>-->
+</html>

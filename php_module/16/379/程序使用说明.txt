@@ -1,0 +1,1 @@
+运行本范例前，需要配置系统盘下“Windows”文件夹中的PHP.ini文件，将“SMTP = localhost”改为“SMTP =（SMTP服务器地址）”，例如“SMTP =192.168.1.41”。然后重新启动Apache服务即可。

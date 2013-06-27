@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<对象配置> 
+  <IP对象> 
+    <ip_name>LAN1</ip_name>  
+    <ip_addr>192.168.145.2</ip_addr> 
+  </IP对象>  
+  <IP对象> 
+    <ip_name>LAN2</ip_name>  
+    <ip_addr>193.168.145.2</ip_addr> 
+  </IP对象> 
+</对象配置>

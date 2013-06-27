@@ -1,0 +1,3 @@
+运行本实例，需要更改系统盘中windows(或winnt)目录中的php.ini文件。在该文件的Dynamic Extensions模块中加如下内容：
+extension=php_mysqli.dll
+然后重新启动Apache服务器

@@ -1,0 +1,13 @@
+TYPE=VIEW
+query=select `db_database09`.`tb_changeview`.`username` AS `username` from `db_database09`.`tb_changeview`
+md5=20cb0f2559d65c562caf4a6a60f7305c
+updatable=1
+algorithm=0
+definer_user=root
+definer_host=localhost
+suid=1
+with_check_option=0
+revision=2
+timestamp=2007-03-14 10:34:27
+create-version=1
+source=select username from tb_changeview

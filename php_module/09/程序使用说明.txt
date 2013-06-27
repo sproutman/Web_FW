@@ -1,0 +1,16 @@
+由于直接将文件夹db_database09拷贝到MySQL安装目录下的data目录中无法将数据库中的已经建立的存储过程也一同还原，所以应通过数据库备份文件db_database09.sql还原该数据库，具体还原方式如下：
+(1)打开“命令提示符”。
+(2)在命令提示符下键入以下命令还原数据库db_database09
+  mysql -uroot -proot -D<c:/db_database09.sql
+
+  在实际还原时，应在上述命令中给出真实的MySQL数据库用户的用户名和用户密码，并将c:/db_database09.sql更改为真实的该文件的存储路径。
+
+
+由于本章大多数实例应用了mysqli技术，所以应修改php.ini文件,具体修改步骤如下：
+(1)找到系统盘目录下的windows(winnt)文件夹下的php.ini文件。
+(2)找到该文件的Dynamic Extensions模块，并在该模块处加上如下语句：
+  extension=php_mysqli.dll
+(3)保存php.ini文件并重新启动Apache服务器。
+
+
+

@@ -1,0 +1,13 @@
+TYPE=VIEW
+query=select `db_database09`.`tb_admin`.`name` AS `name`,`db_database09`.`tb_admin`.`pwd` AS `pwd` from `db_database09`.`tb_admin`
+md5=562e28883d119f0ba8f972861cbefaa8
+updatable=1
+algorithm=0
+definer_user=root
+definer_host=localhost
+suid=1
+with_check_option=0
+revision=1
+timestamp=2007-03-14 09:41:46
+create-version=1
+source=select name,pwd from tb_admin
